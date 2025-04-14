@@ -1,0 +1,392 @@
+.glass-tab-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: rgba(255, 255, 255, 0.03);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  padding: 0.75rem 2rem;
+  box-shadow: 
+    0 4px 30px rgba(0, 0, 0, 0.1),
+    inset 0 1px 1px rgba(255, 255, 255, 0.07);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  width: 100%;
+  box-sizing: border-box;
+  transition: all 0.3s ease;
+}
+
+.glass-tab-bar:hover {
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.logo-container {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  position: relative;
+  overflow: visible;
+}
+
+.logo-icon {
+  font-size: 1.75rem;
+  animation: float 3s ease-in-out infinite;
+  transition: transform 0.3s ease;
+  cursor: pointer;
+}
+
+.logo-icon:hover {
+  transform: scale(1.1);
+  animation: shake 0.5s ease-in-out;
+}
+
+.logo-text {
+  font-size: 1.5rem;
+  font-weight: 800;
+  background: linear-gradient(135deg, #fff 0%, rgba(255,255,255,0.7) 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  letter-spacing: 0.5px;
+}
+
+.tabs-container {
+  position: relative;
+  display: flex;
+  gap: 0.5rem;
+  padding: 0.25rem;
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: 1rem;
+  backdrop-filter: blur(5px);
+  isolation: isolate;
+}
+
+.tab {
+  z-index: 1;
+  background: transparent;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.25rem;
+  color: rgba(255, 255, 255, 0.7);
+  border: none;
+  cursor: pointer;
+  font-weight: 500;
+  font-size: 0.95rem;
+  border-radius: 0.75rem;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.tab:hover {
+  color: white;
+  transform: translateY(-1px);
+  background: transparent;
+}
+
+.tab.active {
+  background: transparent;
+  color: white;
+  box-shadow: 
+    0 2px 10px rgba(0, 0, 0, 0.1),
+    inset 0 1px 1px rgba(255, 255, 255, 0.1);
+}
+
+.tab-icon {
+  transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+  font-size: 1.1rem;
+  display: inline-block;
+  will-change: transform;
+}
+
+.tab:hover .tab-icon,
+.tab.active .tab-icon {
+  transform: scale(1.2);
+}
+
+.tab-highlight {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  width: 0;
+  height: 2px;
+  background: linear-gradient(90deg, 
+    rgba(255,255,255,0) 0%,
+    rgba(255,255,255,0.8) 50%,
+    rgba(255,255,255,0) 100%
+  );
+  transition: all 0.3s ease;
+  transform: translateX(-50%);
+}
+
+.tab.active .tab-highlight {
+  width: 80%;
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-5px); }
+}
+
+@keyframes bounceOnce {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-15px);
+  }
+}
+
+.animate-bounce-once {
+  animation: bounceOnce 0.5s cubic-bezier(0.36, 0, 0.66, -0.56) forwards;
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 640px) {
+  .glass-tab-bar {
+    padding: 0.5rem 1rem;
+  }
+  
+  .logo-icon {
+    font-size: 1.4rem;
+  }
+  
+  .logo-text {
+    font-size: 1.2rem;
+  }
+  
+  .tab {
+    padding: 0.5rem 0.75rem;
+    font-size: 0.9rem;
+  }
+  
+  .tab-icon {
+    font-size: 1rem;
+  }
+  
+  .tab-label {
+    display: none;
+  }
+  
+  .tabs-container {
+    gap: 0.25rem;
+  }
+}
+
+/* Hover Effects for Desktop */
+@media (min-width: 1024px) {
+  .tab {
+    transform: translateY(0);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  
+  .tab:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  }
+  
+  .tab.active:hover {
+    transform: translateY(-1px);
+  }
+}
+
+/* Add these new styles at the end of the file */
+.tab[data-tab-id="admin/payroll"] .tab-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.25rem;
+  border-radius: 50%;
+  background: linear-gradient(45deg, rgba(255,215,0,0.1), rgba(255,223,0,0.05));
+  transition: all 0.3s ease;
+}
+
+.tab[data-tab-id="admin/payroll"]:hover .tab-icon {
+  background: linear-gradient(45deg, rgba(255,215,0,0.2), rgba(255,223,0,0.1));
+}
+
+.tab[data-tab-id="admin/leaves"] {
+  position: relative;
+  overflow: visible !important;
+}
+
+.tab[data-tab-id="admin/leaves"] .tab-icon {
+  position: relative;
+  z-index: 2;
+}
+
+/* Add a subtle glow effect on hover */
+.tab[data-tab-id="admin/leaves"]:hover .tab-icon {
+  filter: drop-shadow(0 0 8px rgba(255, 182, 193, 0.4));
+}
+
+/* Style for confetti container */
+.confetti-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  overflow: visible;
+  z-index: 1;
+}
+
+/* Style for confetti particles */
+.confetti-particle {
+  position: absolute;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  pointer-events: none;
+}
+
+/* Add near the confetti styles */
+.sparkle-particle {
+  pointer-events: none;
+  z-index: 2;
+  color: #FFD700;
+  text-shadow: 0 0 5px rgba(255, 215, 0, 0.8);
+  will-change: transform, opacity;
+}
+
+/* Add to the existing tab styles */
+.tab[data-tab-id="register"] {
+  position: relative;
+  overflow: visible !important;
+}
+
+.tab[data-tab-id="register"] .tab-icon {
+  transform-origin: bottom center;
+  will-change: transform, filter;
+}
+
+.tab[data-tab-id="register"]:hover .tab-icon {
+  filter: drop-shadow(0 0 4px rgba(255, 255, 255, 0.4));
+}
+
+/* Add these styles for the admin login tab */
+.tab[data-tab-id="adminlogin"] {
+  position: relative;
+  overflow: visible !important;
+}
+
+.tab[data-tab-id="adminlogin"] .tab-icon {
+  position: relative;
+  z-index: 2;
+  filter: drop-shadow(0 0 5px rgba(255, 215, 0, 0.3));
+  transition: all 0.3s ease;
+}
+
+.tab[data-tab-id="adminlogin"]:hover .tab-icon {
+  filter: drop-shadow(0 0 8px rgba(255, 215, 0, 0.5));
+  transform: translateY(-2px) scale(1.05);
+}
+
+/* Style for admin sparkles */
+.tab[data-tab-id="adminlogin"] .sparkle-particle {
+  color: #FFD700;
+  text-shadow: 0 0 8px rgba(255, 215, 0, 0.8);
+  font-size: 10px;
+}
+
+/* Update the cash rain animation */
+@keyframes cashRain {
+  0% {
+    transform: translateY(0) rotate(0deg);
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  50% {
+    transform: translateY(50px) rotate(180deg);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(200px) rotate(360deg);
+    opacity: 0;
+  }
+}
+
+/* Add shake animation */
+@keyframes shake {
+  0%, 100% { transform: scale(1.1) rotate(0deg); }
+  25% { transform: scale(1.1) rotate(-10deg); }
+  75% { transform: scale(1.1) rotate(10deg); }
+}
+
+/* Add glow effect for money emojis */
+.money-particle {
+  filter: drop-shadow(0 0 8px rgba(0, 255, 0, 0.3));
+  will-change: transform, opacity;
+}
+
+/* Style for the leaves tab */
+.tab[data-tab-id="leaves"] {
+  position: relative;
+  overflow: visible !important;
+}
+
+.tab[data-tab-id="leaves"] .tab-icon {
+  position: relative;
+  z-index: 2;
+}
+
+/* Add a subtle glow effect on hover */
+.tab[data-tab-id="leaves"]:hover .tab-icon {
+  filter: drop-shadow(0 0 8px rgba(144, 238, 144, 0.4));
+}
+
+/* Add these new styles for the Welcome icon */
+.tab[data-tab-id="welcome"] .tab-icon {
+  position: relative;
+  filter: drop-shadow(0 0 2px rgba(255, 255, 255, 0.3));
+  transform-origin: bottom center;
+}
+
+.tab[data-tab-id="welcome"] .tab-icon::after {
+  content: '';
+  position: absolute;
+  inset: -4px;
+  background: radial-gradient(circle, rgba(255,255,255,0.2) 0%, transparent 70%);
+  opacity: 0;
+  animation: welcome-glow 1.5s ease-in-out infinite;
+}
+
+@keyframes welcome-glow {
+  0%, 100% { opacity: 0; }
+  50% { opacity: 1; }
+}
+
+/* Add styles for the Login icon */
+.tab[data-tab-id="login"] .tab-icon {
+  position: relative;
+  transform-origin: center;
+}
+
+.tab[data-tab-id="login"] .tab-icon::before {
+  content: '';
+  position: absolute;
+  inset: -8px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 50%;
+  animation: security-ring 2s linear infinite;
+}
+
+@keyframes security-ring {
+  0% {
+    transform: scale(0.8);
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1.2);
+    opacity: 0;
+  }
+} 

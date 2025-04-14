@@ -1,0 +1,9 @@
+DatabaseName : payroll_system
+
+🚀 How to Import into MySQL
+Open XAMPP and start Apache & MySQL.
+Open phpMyAdmin (http://localhost/phpmyadmin).
+Open SQL tab, copy-paste the schema above, and click Run.
+
+
+ALTER TABLE attendance ADD COLUMN hours_worked DECIMAL(10,2) DEFAULT 0;
